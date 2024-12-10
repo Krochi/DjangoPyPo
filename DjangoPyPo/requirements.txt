@@ -1,0 +1,12 @@
+pip
+attrs
+wheel
+google
+protobuf
+pillow
+Django
+asgiref
+sqlparse
+colorama
+numpy
+requests
