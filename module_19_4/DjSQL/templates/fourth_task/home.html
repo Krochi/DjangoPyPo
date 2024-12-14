@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+</head>
+<body>
+{% extends 'fourth_task/menu.html' %}
+
+{% block pagename %}Главная страница{% endblock %}
+
+{% block content %}
+<h1>Главная страница</h1>
+{% endblock %}
+
+    <nav>
+        <ul>
+            <li><a href="/">Главная</a></li>
+            <li><a href="/shop/">Магазин</a></li>
+            <li><a href="/cart/">Корзина</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
