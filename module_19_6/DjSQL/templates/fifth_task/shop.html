@@ -1,0 +1,36 @@
+{% extends 'fifth_task/base.html' %}
+
+{% block title %}Магазин{% endblock %}
+
+{% block content %}
+<h1>Список игр</h1>
+<nav>
+    <a href="/">Главная</a>
+    <a href="/shop/">Магазин</a>
+    <a href="/cart/">Корзина</a>
+</nav>
+<ul>
+    {% for game in games %}
+        <li>
+            <strong>{{ game.name }}</strong> | {{ game.description }}. Стоимость: {{ game.cost|floatformat:2 }}<br>
+            Размер: {{ game.size }} GB<br>
+            {% if game.age_limited %}
+                Возрастное ограничение: 18+
+            {% else %}
+                Без возрастных ограничений
+            {% endif %}
+            <br>
+            <form method="post" action="{% url 'add_to_cart' game.id %}">
+                {% csrf_token %}
+                <button type="submit">Добавить в корзину</button>
+            </form>
+        </li>
+    {% empty %}
+        <li>Игр пока нет</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+
+
+

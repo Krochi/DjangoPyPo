@@ -1,0 +1,36 @@
+{% extends 'fifth_task/base.html' %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h1>Добро пожаловать, <strong>{{ user.username }}</strong>!</h1>
+{% endif %}
+<h1>Корзина</h1>
+<p>Здесь вы можете увидеть товары, добавленные в вашу корзину.</p>
+{% if cart.games.all %}
+    <ul>
+        {% for game in cart.games.all %}
+            <li>
+                {{ game.name }} | Стоимость: {{ game.cost }}
+                <form method="post" action="{% url 'remove_from_cart' game.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Удалить из корзины</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="{% url 'checkout' %}">
+        {% csrf_token %}
+        <button type="submit">Оформить покупку</button>
+    </form>
+{% else %}
+    <p>СЕЙЧАС ВАША КОРЗИНА ПУСТА</p>
+{% endif %}
+<button onclick="location.href='/shop/'">Вернуться в магазин</button>
+{% endblock %}
+
+
+
+
+

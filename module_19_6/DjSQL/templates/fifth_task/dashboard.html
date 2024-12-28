@@ -1,0 +1,30 @@
+{% extends 'fifth_task/base.html' %}
+
+{% block title %}Дашборд{% endblock %}
+
+{% block content %}
+<h1>Дашборд</h1>
+<h2>Баланс пользователя</h2>
+<p>Баланс: {{ buyer.balance }} руб.</p>
+
+<h2>Заказанные игры</h2>
+<ul>
+    {% for game in games %}
+        <li>{{ game.name }} - {{ game.cost }} руб.</li>
+    {% empty %}
+        <p>Нет заказанных игр.</p>
+    {% endfor %}
+</ul>
+
+<h2>Зарегистрированные пользователи: {{ total_users }}</h2>
+{% for user, games in users_games.items %}
+    <h3>{{ user }}</h3>
+    <ul>
+        {% for game in games %}
+            <li>{{ game.name }} - {{ game.cost }} руб.</li>
+        {% empty %}
+            <p>Нет заказанных игр.</p>
+        {% endfor %}
+    </ul>
+{% endfor %}
+{% endblock %}
