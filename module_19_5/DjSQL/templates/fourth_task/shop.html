@@ -1,0 +1,62 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Магазин</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    &lt;!&ndash; Интерактивные кнопки навигации &ndash;&gt;-->
+<!--    <nav>-->
+<!--        <a href="/">Главная</a>-->
+<!--        <a href="/shop/">Магазин</a>-->
+<!--        <a href="/cart/">Корзина</a>-->
+<!--    </nav>-->
+<!--    <h1>Список игр</h1>-->
+<!--    <ul>-->
+<!--        {% for game in games %}-->
+<!--            <li>-->
+<!--                <strong>{{ game.name }}</strong> | {{ game.description }}. Стоимость: {{ game.cost|floatformat:2 }}-->
+<!--                <button>Купить</button>-->
+<!--            </li>-->
+<!--        {% empty %}-->
+<!--            <li>Игр пока нет</li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Магазин</title>
+</head>
+<body>
+    <!-- Интерактивные кнопки навигации -->
+    <nav>
+        <a href="/">Главная</a>
+        <a href="/shop/">Магазин</a>
+        <a href="/cart/">Корзина</a>
+    </nav>
+    <h1>Список игр</h1>
+    <ul>
+        {% for game in games %}
+            <li>
+                <strong>{{ game.name }}</strong> | {{ game.description }}. Стоимость: {{ game.cost|floatformat:2 }}
+                <form method="post" action="{% url 'add_to_cart' game.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Добавить в корзину</button>
+                </form>
+            </li>
+        {% empty %}
+            <li>Игр пока нет</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+
+
+
+
+
+
